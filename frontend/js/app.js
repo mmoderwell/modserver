@@ -3,26 +3,29 @@ let two = document.getElementById('two');
 let three = document.getElementById('three');
 let four = document.getElementById('four');
 
-one.addEventListener('click', apiCall);
-two.addEventListener('click', apiCall);
-three.addEventListener('click', apiCall);
-four.addEventListener('click', apiCall);
+one.addEventListener('click', api_call);
+two.addEventListener('click', api_call);
+three.addEventListener('click', api_call);
+four.addEventListener('click', api_call);
 
-function apiCall(location, name) {
+function api_call(location, name) {
 	let action;
-	if (this.checked) {
-		action = 'on'
-	} else {
-		action = 'off';
-	}
-	let http = new XMLHttpRequest();
-	http.overrideMimeType('application/json');
-	http.addEventListener("load", res_listen);
-	http.open('GET', `http://localhost:8000/api/lights/bedroom/${this.id}/${action}`, true);
+	if (this.checked) action = 'on'
+	else action = 'off';
+
+	let http_req = new XMLHttpRequest();
+	http_req.overrideMimeType('application/json');
+	http_req.addEventListener("load", res_listen);
+	http_req.onerror = () => this.nextSibling.nextSibling.classList.add('failure');
+	http_req.open('GET', `http://localhost:8000/api/lights/${this.id}/${action}`, true);
 	//http.setRequestHeader('Content-Type', 'application/json');
-	http.send(null);
+	http_req.send(null);
 }
 
 function res_listen() {
-	console.log(this.responseText);
+	let response = JSON.parse(this.responseText);
+	let element = document.getElementById(response.name);
+
+	if (this.status == 200) element.nextSibling.nextSibling.classList.add('success')
+	else element.nextSibling.nextSibling.classList.add('failure');
 }

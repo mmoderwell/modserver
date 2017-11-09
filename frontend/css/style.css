@@ -1,93 +1,70 @@
 html, body {
-  font-family: sans-serif;
-  text-align: center;
   height: 100%;
 }
-.container {
-  text-align: center;
-  position: absolute;
-  margin-top: -80px;
-  width: 100%;
-  top: 50%;
+body {
+  background: linear-gradient(#f7f7f7, #e0e0e0);
+  margin: 0;
 }
-.toggle {
-  margin: 4px;
-  display: inline-block;
-}
-.toggle {
-  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.25), inset 0 2px 1px 1px rgba(255, 255, 255, 0.9), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  background: #ccd0d4;
+.wrap {
   position: relative;
-  height: 140px;
-  width: 140px;
-}
-.toggle:before {
-  box-shadow: 0 0 17.5px 8.75px #fff;
-  border-radius: 118.3px;
-  background: #fff;
-  position: absolute;
-  margin-left: -50.4px;
-  margin-top: -50.4px;
-  opacity: 0.2;
-  content: "";
-  height: 100.8px;
-  width: 100.8px;
-  left: 50%;
+  width: 33.33%;
+  margin: -72px 0;
   top: 50%;
+  float: left;
 }
-.toggle .button {
-  -webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  filter: blur(1px);
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5), inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 3px 4px -1px rgba(255, 255, 255, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.8), inset 0 20px 30px 0 rgba(255, 255, 255, 0.2);
-  border-radius: 96.32px;
+label {
+  margin: 1.5em auto;
+}
+input {
   position: absolute;
-  background: #ccd0d4;
-  margin-left: -48.16px;
-  margin-top: -48.16px;
+  left: -9999px;
+}
+.slider {
+  position: relative;
   display: block;
-  height: 96.32px;
-  width: 96.32px;
-  left: 50%;
-  top: 50%;
-}
-.toggle .label {
-  transition: color 300ms ease-out;
-  text-shadow: 1px 1px 3px #ccd0d4, 0 0 0 rgba(0, 0, 0, 0.8), 1px 1px 4px #fff;
-  line-height: 139px;
-  text-align: center;
-  position: absolute;
-  font-weight: 700;
-  font-size: 42px;
-  display: block;
-  opacity: 0.9;
-  height: 100%;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.4);
-}
-.toggle input {
-  opacity: 0;
-  position: absolute;
+  width: 5.5em;
+  height: 3em;
   cursor: pointer;
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
+  border-radius: 1.5em;
+  transition: 350ms;
+  background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0)), #ddd;
+  box-shadow: 0 0.07em 0.1em -0.1em rgba(0, 0, 0, 0.4) inset, 0 0.05em 0.08em -0.01em rgba(255, 255, 255, 0.7);
 }
-.toggle input:active~.button {
-  box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 30px 1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 25px 0 rgba(0, 0, 0, 0.4), inset 0 0 10px 1px rgba(255, 255, 255, 0.6);
+.slider::before {
+  position: absolute;
+  content: '';
+  width: 2em;
+  height: 2em;
+  top: 0.5em;
+  left: 0.5em;
+  border-radius: 50%;
+  transition: 250ms ease-in-out;
+  background: linear-gradient(#f5f5f5 10%, #eeeeee);
+  box-shadow: 0 0.1em 0.15em -0.05em rgba(255, 255, 255, 0.9) inset, 0 0.5em 0.3em -0.1em rgba(0, 0, 0, 0.25);
 }
-.toggle input:active~.label {
-  font-size: 40px;
-  color: rgba(0, 0, 0, 0.45);
+.slider::after {
+  position: absolute;
+  content: '';
+  width: 1em;
+  height: 1em;
+  top: 1em;
+  left: 6em;
+  border-radius: 50%;
+  transition: 250ms ease-in;
+  background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.1)), #ddd;
+  box-shadow: 0 0.08em 0.15em -0.1em rgba(0, 0, 0, 0.5) inset, 0 0.05em 0.08em -0.01em rgba(255, 255, 255, 0.7), -7.25em 0 0 -0.25em rgba(0, 0, 0, 0.3);
 }
-.toggle input:checked~.button {
-  box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 20px 0 rgba(0, 0, 0, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
+input:checked+.slider.success::after {
+  background-color: #67db59;
 }
-.toggle input:checked~.label {
-  font-size: 40px;
-  color: rgba(0, 0, 0, 0.4);
+input:checked+.slider.failure::after {
+  background-color: #e83e3e;
+}
+input:checked+.slider::after {
+  background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.1));
+  background-color: #fc7c57;
+  box-shadow: 0 0.08em 0.15em -0.1em rgba(0, 0, 0, 0.5) inset, 0 0.05em 0.08em -0.01em rgba(255, 255, 255, 0.7), -7.25em 0 0 -0.25em rgba(0, 0, 0, 0.12);
+}
+input:checked+.slider::before {
+  left: 3em;
 }
