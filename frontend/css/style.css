@@ -57,12 +57,14 @@ input {
 input:checked+.slider.success::after {
   background-color: #67db59;
 }
+input:checked+.slider.waiting::after {
+  background-color: #fc7c57;
+}
 input:checked+.slider.failure::after {
   background-color: #e83e3e;
 }
 input:checked+.slider::after {
   background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.1));
-  background-color: #fc7c57;
   box-shadow: 0 0.08em 0.15em -0.1em rgba(0, 0, 0, 0.5) inset, 0 0.05em 0.08em -0.01em rgba(255, 255, 255, 0.7), -7.25em 0 0 -0.25em rgba(0, 0, 0, 0.12);
 }
 input:checked+.slider::before {
