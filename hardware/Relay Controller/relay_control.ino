@@ -129,6 +129,14 @@ void loop() {
 
         // Check to see what the client requested:
 
+        if (currentLine.endsWith("/status")) {
+          display.clear();
+          display.drawString(0, 10, "Light status was requested");
+          display.drawString(0, 26, currentLine);
+          display.display();
+          delay(1000);
+        }
+
         if (currentLine.endsWith("/on")) {
           String newLine = currentLine.substring(0, currentLine.length() - 3);
           if (newLine.endsWith("/one")) {
