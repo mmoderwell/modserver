@@ -21,7 +21,6 @@ function res_listen() {
 	let element = document.getElementById(response.one);
 
 	if (this.status == 200) {
-		console.log('This works');
 		let numbers = ['one', 'two', 'three', 'four'];
 		for (let i = 0; i < 4; i++) {
 			if (response[numbers[i]] == 1) {

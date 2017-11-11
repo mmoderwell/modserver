@@ -1,9 +1,41 @@
-html, body {
-  height: 100%;
-}
+/*------------------General Styles------------------*/
+
 body {
-  background: linear-gradient(#f7f7f7, #e0e0e0);
-  margin: 0;
+  max-width: 100vw;
+  background-color: #e3e3e3;
+  margin-top: 0;
+}
+
+/*------------------Content Styles------------------*/
+
+.box {
+  background-color: #eee;
+  text-align: center;
+  box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+}
+.content {
+  padding: 10% 0;
+  margin: 2em 0;
+}
+
+/*------------------Header Styles------------------*/
+
+#heading {
+  padding: 6% 0;
+  font-family: 'Hack', monospace;
+  letter-spacing: .1em;
+}
+#personal {
+  text-align: right;
+  padding: 2% 0;
+}
+#personal p {
+  margin-bottom: 0;
+}
+@media(max-width:768px) {
+  #personal {
+    text-align: left;
+  }
 }
 .wrap {
   position: relative;
