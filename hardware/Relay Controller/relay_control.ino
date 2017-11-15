@@ -1,8 +1,9 @@
 /*
 
- A simple web server running on ES32 or ESP8266 that recieves GET requests from a Node server.
- It is used to control a four channel relay which are individually controllable.
- The program will print the IP address and most recent GET requests to the Serial monitor and OLED screen.
+ A simple web server running on ES32 or ESP8266 that recieves GET requests from
+ a Node server. It is used to control a four channel relay which are
+ individually controllable. The program will print the IP address and most
+ recent GET requests to the Serial monitor and OLED screen.
 
  Given the IP address of your hardware is yourAddress:
  http://yourAddress/api/lights/one/on turns the first relay on.
@@ -19,14 +20,14 @@
 const char* ssid = "_";
 const char* password = "nu141720";
 
-//Define pins used for each relay
+// Define pins used for each relay
 int relay_one = 12;
 int relay_two = 13;
 int relay_three = 14;
 int relay_four = 15;
 
-SSD1306 display(0x3c, 5, 4); //define pins for OLED display
-WiFiServer server(80);  // listen for requests on on port 80
+SSD1306 display(0x3c, 5, 4);  // define pins for OLED display
+WiFiServer server(80);        // listen for requests on on port 80
 
 void setup() {
   Serial.begin(115200);
@@ -50,6 +51,11 @@ void setup() {
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
+
+  display.clear();
+  display.drawString(0, 10, "Connecting to");
+  display.drawString(0, 26, ssid);
+
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -68,17 +74,16 @@ void setup() {
 int value = 0;
 
 void loop() {
-
-
   WiFiClient client = server.available();  // listen for incoming clients
   String ip = WiFi.localIP().toString();
   display.clear();
-  display.drawString(0, 10, "Connected to WiFi");
+  display.drawString(0, 10, "Connected.");
   display.drawString(0, 26, ip);
 
-  if (client) {                     // if you get a request,
+  if (client) {                      // if you get a request,
     Serial.println("New request.");  // print a message out the serial port
-    String currentLine = "";      // make a String to hold incoming data from the client
+    String currentLine =
+        "";  // make a String to hold incoming data from the client
     while (client.connected()) {  // loop while the client's connected
       if (client.available()) {   // if there's bytes to read from the client,
         char c = client.read();   // read a byte, then
@@ -114,6 +119,9 @@ void loop() {
             client.print("\",");
             client.print("\"four\":\"");
             client.print(status_four);
+            client.print("\",");
+            client.print("\"success\":\"");
+            client.print("true");
             client.print("\"}");
 
             // The HTTP response ends with another blank line:
@@ -123,7 +131,8 @@ void loop() {
           } else {  // if you got a newline, then clear currentLine:
             currentLine = "";
           }
-        } else if (c != '\r') {  // if you got anything else but a carriage return character,
+        } else if (c != '\r') {  // if you got anything else but a carriage
+                                 // return character,
           currentLine += c;      // add it to the end of the currentLine
         }
 
