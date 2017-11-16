@@ -29,7 +29,8 @@ body {
 /*------------------Header Styles------------------*/
 
 #heading {
-  padding: 6% 0;
+  font-size: 1.4em;
+  padding: 10% 0;
   font-family: 'Hack', monospace;
   letter-spacing: .1em;
 }
