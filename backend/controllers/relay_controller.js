@@ -2,7 +2,7 @@ const http = require('http');
 
 module.exports = {
 	hello(req, res) {
-		res.send('Hello! Welcome to light controller');
+		res.send('Hello! Welcome to the relay controller');
 	},
 	status(req, res) {
 		let body;

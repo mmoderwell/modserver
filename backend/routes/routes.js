@@ -1,7 +1,7 @@
-const light_controller = require('../controllers/light_controller.js');
+const relay_controller = require('../controllers/relay_controller.js');
 
 module.exports = (app) => {
-	app.get('/api/hello', light_controller.hello);
-	app.get('/api/lights/status', light_controller.status);
-	app.get('/api/lights/:name/:action', light_controller.toggle);
+	app.get('/api/hello', relay_controller.hello);
+	app.get('/api/relay/status', relay_controller.status);
+	app.get('/api/relay/:name/:action', relay_controller.toggle);
 }

@@ -14,7 +14,7 @@ let relay_status = function() {
 		}
 	};
 
-	http_req.open('GET', `http://localhost:8000/api/lights/status`, true);
+	http_req.open('GET', `http://localhost:8000/api/relay/status`, true);
 	//http.setRequestHeader('Content-Type', 'application/json');
 	http_req.send(null);
 }
