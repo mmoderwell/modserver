@@ -5,7 +5,6 @@ module.exports = {
 		res.send('Hello! Welcome to the relay controller');
 	},
 	status(req, res) {
-		let body;
 
 		const options = {
 			hostname: '10.0.0.208',
@@ -13,7 +12,10 @@ module.exports = {
 			path: `/status`,
 			method: 'GET',
 		};
+
+		//HTTP request to ESP32/8266 hardware
 		const http_req = http.request(options, (http_res) => {
+			let body;
 			//console.log(`Status: ${http_res.statusCode}`);
 			//console.log(`Headers: ${JSON.stringify(http_res.headers)}`);
 			http_res.setEncoding('utf8');
@@ -25,6 +27,7 @@ module.exports = {
 				console.log('No more data in response.');
 				res.header("Access-Control-Allow-Origin", "*");
 				//let return_json = { "name": name, "action": action, "success": true };
+				//send client the response from hardware
 				res.send(JSON.stringify(body));
 			});
 		});
@@ -33,6 +36,8 @@ module.exports = {
 			console.error(`There was a problem with the request: ${e.message}`);
 			res.header("Access-Control-Allow-Origin", "*");
 			let return_json = { "success": false };
+
+			//send JSON to client
 			res.send(return_json);
 		});
 		http_req.end();
@@ -59,6 +64,7 @@ module.exports = {
 				console.log('No more data in response.');
 				res.header("Access-Control-Allow-Origin", "*");
 				let return_json = { "name": name, "action": action, "success": true };
+				//send JSON to client
 				res.send(JSON.stringify(return_json));
 			});
 		});
@@ -67,8 +73,9 @@ module.exports = {
 			console.error(`There was a problem with the request: ${e.message}`);
 			res.header("Access-Control-Allow-Origin", "*");
 			let return_json = { "name": name, "action": action, "success": false };
+			//send JSON to client
 			res.send(return_json);
 		});
 		http_req.end();
 	}
-}
+};
