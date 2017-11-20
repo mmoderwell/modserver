@@ -22,6 +22,7 @@
         }
     });
 
+    //hitting escape while sidebar is open will close it
     document.onkeydown = function(e) {
         e = e || window.event;
         if (e.keyCode == 27) {

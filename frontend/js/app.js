@@ -9,7 +9,7 @@ three.addEventListener('click', api_call);
 four.addEventListener('click', api_call);
 
 function api_call() {
-
+	//read the state of the slider
 	let action;
 	if (this.checked) {
 		action = 'on';
@@ -33,7 +33,6 @@ function api_call() {
 	};
 
 	http_req.open('GET', `http://localhost:8000/api/relay/${this.id}/${action}`, true);
-	//http.setRequestHeader('Content-Type', 'application/json');
 	http_req.send(null);
 }
 
