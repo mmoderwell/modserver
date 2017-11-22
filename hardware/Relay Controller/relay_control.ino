@@ -75,6 +75,7 @@ int value = 0;
 
 void loop() {
   WiFiClient client = server.available();  // listen for incoming clients
+  
   String ip = WiFi.localIP().toString();
   display.clear();
   display.drawString(0, 10, "Connected.");
