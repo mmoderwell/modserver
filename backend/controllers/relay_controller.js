@@ -15,7 +15,7 @@ module.exports = {
 
 		//HTTP request to ESP32/8266 hardware
 		const http_req = http.request(options, (http_res) => {
-			let body;
+			let body = '';
 			//console.log(`Status: ${http_res.statusCode}`);
 			//console.log(`Headers: ${JSON.stringify(http_res.headers)}`);
 			http_res.setEncoding('utf8');
