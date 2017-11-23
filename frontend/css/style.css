@@ -16,7 +16,7 @@ body {
 .content {
   padding-top: calc(10% - 41px);
   padding-bottom: 7%;
-  margin: 2em 0;
+  margin: 2em 2em;
 }
 #status {
   margin-bottom: 50px;
