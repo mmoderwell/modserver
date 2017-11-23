@@ -31,24 +31,19 @@ function store(next) {
 	});
 	http_req.end();
 }
-//store the sensor value once every 10 minutes
-setInterval(store, 600000);
+//store the sensor value once every 30 minutes
+setInterval(store, 1800000);
 
 module.exports = {
 	hello(req, res) {
 		res.send('Hello! Welcome to the sensor controller');
 	},
 	lookup(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
 		//recieve request from client, lookup sensor values in time period from database,
 		//then send back to client
-		const { sensor, begin, end } = req.params.sensor;
-
-		const opener = new Door({ opener: person });
-
-		opener.save()
-			.then(() => res.send(`${person} just opened the door.`))
-			.catch(next);
-		console.log(`${person} just opened the door.`);
-	},
-
+		const time = req.body;
+		Sensor.find({ time: { "$gte": time.start, "$lt": time.end } })
+			.then(list => res.send(list));
+	}
 };

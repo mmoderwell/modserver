@@ -9,6 +9,11 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://10.0.0.228/modserver')
 	.then(() => console.log('Connected to modserver database.'));
 
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 app.use(bodyParser.json());
 routes(app);
 

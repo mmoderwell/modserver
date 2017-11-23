@@ -5,5 +5,5 @@ module.exports = (app) => {
 	app.get('/api/hello', relay_controller.hello);
 	app.get('/api/relay/status', relay_controller.status);
 	app.get('/api/relay/:name/:action', relay_controller.toggle);
-	//app.get('/api/sensor/value', sensor_controller.store);
+	app.post('/api/sensor/lookup', sensor_controller.lookup);
 }
