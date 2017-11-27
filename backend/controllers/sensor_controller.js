@@ -22,10 +22,8 @@ function store(next) {
 			data.save()
 				.then(() => { console.log('Sensor data saved.') })
 				.catch(next);
-
 		});
 	});
-
 	http_req.on('error', (e) => {
 		console.error(`There was a problem with the request: ${e.message}`);
 	});
@@ -44,6 +42,23 @@ module.exports = {
 		//then send back to client
 		const time = req.body;
 		Sensor.find({ time: { "$gte": time.start, "$lt": time.end } })
-			.then(list => res.send(list));
+			.then((list) => {
+				var temps = [];
+				var times = [];
+				var data = [];
+
+				for (let i = 0; i < list.length; i++) {
+					temps[i] = list[i].value;
+					times[i] = list[i].time;
+				}
+				for (let i = 0; i < temps.length; i++) {
+					data.push({
+						x: times[i],
+						y: temps[i]
+					});
+				}
+				//send back formatted chart data
+				res.send(data)
+			});
 	}
 };
