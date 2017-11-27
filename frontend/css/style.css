@@ -9,6 +9,7 @@ body {
 /*------------------Content Styles------------------*/
 
 .box {
+  border-radius: 4px;
   background-color: #eee;
   text-align: center;
   box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
@@ -53,6 +54,9 @@ body {
   top: 50%;
   float: left;
 }
+
+/*------------------Relay Slider Styles------------------*/
+
 label {
   margin: 1.5em auto;
 }
@@ -110,4 +114,30 @@ input:checked+.slider::after {
 }
 input:checked+.slider::before {
   left: 3em;
+}
+
+/*------------------Loading Animation------------------*/
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.loading span {
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.loading span:nth-child(2) {
+  animation-delay: .2s;
+}
+.loading span:nth-child(3) {
+  animation-delay: .4s;
 }

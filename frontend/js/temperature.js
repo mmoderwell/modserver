@@ -1,8 +1,4 @@
-var temps = [];
-var times = [];
-var data = [];
-
-let sensor_data = function() {
+function sensor_data() {
     let http_req = new XMLHttpRequest();
     http_req.addEventListener("load", res_listen);
 
@@ -10,10 +6,9 @@ let sensor_data = function() {
     http_req.onerror = () => {
         console.log('Unable to connect to server.');
     };
-
     const params = JSON.stringify({
-        start: "2017, 11, 22",
-        end: "2017, 11, 23"
+        start: moment().format('L'),
+        end: moment().add(1, 'days').format('L')
     });
 
     //send GET request to this route on local Node server
@@ -25,44 +20,70 @@ let sensor_data = function() {
 sensor_data.call();
 
 function res_listen() {
-
     //response recieved back from Node server
-    let response = JSON.parse(this.responseText);
-    for (let i = 0; i < response.length; i++) {
-        temps[i] = response[i].value;
-        times[i] = response[i].time;
-    }
-
-    for (let i = 0; i < temps.length; i++) {
-        data.push({
-            x: new Date(times[i]).toString(),
-            y: temps[i]
-        });
-    }
-
-    var ctx = document.getElementById("tempChart").getContext('2d');
-    var myChart = new Chart(ctx, {
+    //already formatted for chart.js
+    let data = JSON.parse(this.responseText);
+    //console.log(data);
+    let ctx = document.getElementById("tempChart").getContext('2d');
+    let myChart = new Chart(ctx, {
         type: 'line',
         data: {
             datasets: [{
-                label: "Temperature Sensor",
+                lineTension: .3,
+                label: "Bedroom",
                 fill: false,
                 color: '#ddd',
                 backgroundColor: '#ddd',
-                borderColor: '#000',
+                borderColor: '#7f90bd',
                 data: data
             }]
         },
         options: {
+            title: {
+                display: true,
+                text: 'House Temperatures',
+                fontFamily: 'Hack',
+                fontSize: 16
+            },
+            layout: {
+                padding: {
+                    left: 50,
+                    right: 50,
+                    top: 0,
+                    bottom: 0
+                }
+            },
             scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero: false
+                    },
+                    gridLines: {
+                        display: false,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Temperature in Farernheit',
+                        fontFamily: 'Hack',
+
                     }
                 }],
                 xAxes: [{
+                    gridLines: {
+                        display: false,
+                    },
                     type: 'time',
-                    distribution: 'series'
+                    time: {
+                        //parser: '',
+                        round: 'minute',
+                        //unit: 'hour', //or use minute
+                        //The number of steps of the above unit between ticks
+                        //unitStepSize: 1,
+                        tooltipFormat: 'dddd, MMMM Do YYYY, h:mm a',
+                        displayFormats: {
+                            hour: 'h a'
+                        }
+                    },
                 }]
             }
         }
