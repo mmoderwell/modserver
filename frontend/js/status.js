@@ -40,7 +40,7 @@ function res_listen() {
 		}
 		//if hardware is not connected to server
 		else {
-			status_display.innerHTML = 'Connected to server. Relay offline.';
+			status_display.innerHTML = 'Connected to server. Relays offline.';
 		}
 	}
 }

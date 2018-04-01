@@ -23,7 +23,7 @@ function res_listen() {
     //response recieved back from Node server
     //already formatted for chart.js
     let data = JSON.parse(this.responseText);
-    //console.log(data);
+    console.log(data);
     let ctx = document.getElementById("tempChart").getContext('2d');
     let myChart = new Chart(ctx, {
         type: 'line',
