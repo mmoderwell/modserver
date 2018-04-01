@@ -24,7 +24,7 @@ function api_call() {
 	this.nextSibling.nextSibling.classList.add('waiting');
 
 	let http_req = new XMLHttpRequest();
-	http_req.addEventListener("load", res_listen);
+	http_req.addEventListener('load', res_listen);
 
 	http_req.onerror = (e) => {
 		this.nextSibling.nextSibling.classList.remove('waiting');
@@ -32,7 +32,7 @@ function api_call() {
 	};
 
 	http_req.open('GET', `/api/relay/${this.id}/${action}`, true);
-	http_req.setRequestHeader("Content-Type", "application/json");
+	http_req.setRequestHeader('Content-Type', 'application/json');
 	http_req.send(null);
 }
 

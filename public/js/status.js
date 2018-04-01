@@ -1,10 +1,10 @@
 let status_display = document.getElementById('status');
-let numbers = ['one', 'two', 'three', 'four'];
+let numbers = ['one', 'two', 'three', 'four', ];
 
 let relay_status = function() {
 	let http_req = new XMLHttpRequest();
 	http_req.overrideMimeType('application/json');
-	http_req.addEventListener("load", res_listen);
+	http_req.addEventListener('load', res_listen);
 
 	//if there is an error with sending request to server, let user know
 	http_req.onerror = () => {
@@ -12,7 +12,7 @@ let relay_status = function() {
 	};
 
 	//send GET request to this route on local Node server
-	http_req.open('GET', `/api/relay/status`, true);
+	http_req.open('GET', '/api/relay/status', true);
 	http_req.send(null);
 };
 
