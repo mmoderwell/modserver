@@ -12,7 +12,7 @@ let relay_status = function() {
 	};
 
 	//send GET request to this route on local Node server
-	http_req.open('GET', `http://localhost:8000/api/relay/status`, true);
+	http_req.open('GET', `/api/relay/status`, true);
 	http_req.send(null);
 };
 

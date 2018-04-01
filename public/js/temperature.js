@@ -12,7 +12,7 @@ function sensor_data() {
     });
 
     //send GET request to this route on local Node server
-    http_req.open('POST', `http://localhost:8000/api/sensor/lookup`, true);
+    http_req.open('POST', `/api/sensor/lookup`, true);
     http_req.setRequestHeader("Content-Type", "application/json");
     http_req.send(params);
 };

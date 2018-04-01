@@ -31,7 +31,7 @@ function api_call() {
 		this.nextSibling.nextSibling.classList.add('failure');
 	};
 
-	http_req.open('GET', `http://localhost:8000/api/relay/${this.id}/${action}`, true);
+	http_req.open('GET', `/api/relay/${this.id}/${action}`, true);
 	http_req.setRequestHeader("Content-Type", "application/json");
 	http_req.send(null);
 }
