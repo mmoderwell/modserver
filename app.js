@@ -11,10 +11,18 @@ let mongo_uri;
 if (process.env.NODE_ENV === 'DEVELOPMENT') {
 	mongo_uri = 'mongodb://localhost:27017/modserver';
 } else {
-	mongo_uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/mmodserver`;
+	mongo_uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/modserver`;
 }
 //connect to database hosted on raspberry pi
-mongoose.connect(mongo_uri).then(() => console.log('Connected to modserver database.'));
+mongoose.connect(mongo_uri, { useMongoClient: true }).then(() => console.log('Connected to modserver database.'))
+	.catch((e) => {
+		console.error('Connection to mongodb failed.');
+	});
+
+//the database connection is disconnected
+mongoose.connection.on('disconnected', function() {
+	console.log('Connection to mongodb is disconnected.');
+});
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -30,7 +38,7 @@ routes(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-	var err = new Error('Not Found');
+	let err = new Error('Not Found');
 	err.status = 404;
 	next(err);
 });

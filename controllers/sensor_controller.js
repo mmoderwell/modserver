@@ -5,7 +5,7 @@ function store(next) {
 	const options = {
 		hostname: '10.0.0.118',
 		port: 80,
-		path: `/value`,
+		path: '/value',
 		method: 'GET',
 	};
 
@@ -18,9 +18,9 @@ function store(next) {
 		});
 		http_res.on('end', () => {
 			body = JSON.parse(body);
-			const data = new Sensor({ value: body.value })
+			const data = new Sensor({ value: body.value, });
 			data.save()
-				.then(() => { console.log('Sensor data saved.') })
+				.then(() => { console.log('Sensor data saved.'); })
 				.catch(next);
 		});
 	});
@@ -41,7 +41,7 @@ module.exports = {
 		//recieve request from client, lookup sensor values in time period from database,
 		//then send back to client
 		const time = req.body;
-		Sensor.find({ time: { "$gte": time.start, "$lt": time.end } })
+		Sensor.find({ time: { '$gte': time.start, '$lt': time.end, }, })
 			.then((list) => {
 				var temps = [];
 				var times = [];
@@ -54,11 +54,11 @@ module.exports = {
 				for (let i = 0; i < temps.length; i++) {
 					data.push({
 						x: times[i],
-						y: temps[i]
+						y: temps[i],
 					});
 				}
 				//send back formatted chart data
-				res.send(data)
+				res.send(data);
 			});
-	}
+	},
 };
