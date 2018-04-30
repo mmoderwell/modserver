@@ -1,17 +1,22 @@
+let initial_chart = make_chart('Fetching data', null);
+
 function sensor_data() {
 	let http_req = new XMLHttpRequest();
 	http_req.addEventListener('load', res_listen);
 
 	//if there is an error with sending request to server, let user know
+	//still display an empty chart
 	http_req.onerror = () => {
 		console.log('Unable to connect to server.');
+		let chart = make_chart('No data to display.', null);
 	};
+
 	const params = JSON.stringify({
 		start: moment().format('L'),
 		end: moment().add(1, 'days').format('L'),
 	});
 
-	//send GET request to this route on local Node server
+	//send GET request to this route on Node server
 	http_req.open('POST', '/api/sensor/lookup', true);
 	http_req.setRequestHeader('Content-Type', 'application/json');
 	http_req.send(params);
@@ -23,9 +28,14 @@ function res_listen() {
 	//response recieved back from Node server
 	//already formatted for chart.js
 	let data = JSON.parse(this.responseText);
-	console.log('Chart data:', data);
-	let ctx = document.getElementById('tempChart').getContext('2d');
-	let myChart = new Chart(ctx, {
+	//console.log('Chart data:', data);
+
+	let myChart = make_chart('House Temperatures', data);
+}
+
+function make_chart(title, data) {
+
+	let options = {
 		type: 'line',
 		data: {
 			datasets: [{
@@ -40,8 +50,8 @@ function res_listen() {
 		},
 		options: {
 			title: {
-				display: true,
-				text: 'House Temperatures',
+				display: false,
+				text: title,
 				fontFamily: 'Hack',
 				fontSize: 16,
 			},
@@ -87,5 +97,8 @@ function res_listen() {
 				}, ],
 			},
 		},
-	});
+	};
+
+	let ctx = document.getElementById('tempChart').getContext('2d');
+	let chart = new Chart(ctx, options);
 }
