@@ -4,6 +4,7 @@ module.exports = {
 	hello(req, res) {
 		res.send('Hello! Welcome to the relay controller');
 	},
+	//sends a HTTP request to hardware to see what relays are currently on
 	status(req, res) {
 
 		const options = {
@@ -42,6 +43,7 @@ module.exports = {
 		});
 		http_req.end();
 	},
+	//send a request to hardware to toggle a specific relay on or off
 	toggle(req, res) {
 		const { name, action } = req.params;
 
@@ -77,5 +79,5 @@ module.exports = {
 			res.send(return_json);
 		});
 		http_req.end();
-	}
+	},
 };
