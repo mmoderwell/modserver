@@ -11,7 +11,7 @@ let relay_status = function() {
 		status_display.innerHTML = 'Unable to connect to server.';
 	};
 
-	//send GET request to this route on local Node server
+	//send GET request to this route on Node server
 	http_req.open('GET', '/api/relay/status', true);
 	http_req.send(null);
 };
@@ -23,8 +23,9 @@ function res_listen() {
 	//response recieved back from Node server
 	let response = JSON.parse(this.responseText);
 
+	//will always be connected to Node server since page is now served from same server
 	if (this.status == 200) {
-		//if hardware is connected to server
+		//hardware is connected to server
 		if (response.success) {
 			status_display.innerHTML = 'Connected.';
 			document.querySelector('.box').classList.remove('no_connection');
@@ -38,7 +39,7 @@ function res_listen() {
 				}
 			}
 		}
-		//if hardware is not connected to server
+		//hardware is not connected to Node server
 		else {
 			status_display.innerHTML = 'Connected to server. Relays offline.';
 		}

@@ -5,8 +5,8 @@ let side_bar = document.getElementById('sidebar-wrapper');
 let night_mode = document.getElementById('night_mode');
 let night_mode_status = localStorage.getItem('night_mode');
 
+//callback function for toggling night mode
 function night() {
-
 	if (night_mode.getAttribute('class')) {
 		sidebar_functions.disable();
 	} else {
@@ -50,6 +50,7 @@ let sidebar_functions = {
 	},
 };
 
+//when page is loaded, check last state of night mode and apply it
 if (night_mode_status == 'active') {
 	sidebar_functions.enable();
 } else {
