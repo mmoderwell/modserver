@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') {
 	mongo_uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/modserver`;
 }
 //connect to database hosted on raspberry pi
-mongoose.connect(mongo_uri, { useMongoClient: true }).then(() => console.log('Connected to modserver database.'))
+mongoose.connect(mongo_uri, { useMongoClient: true, }).then(() => console.log('Connected to modserver database.'))
 	.catch((e) => {
 		console.error('Connection to mongodb failed.');
 	});
@@ -29,10 +29,11 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
+
 app.use(bodyParser.json());
 routes(app);
 
