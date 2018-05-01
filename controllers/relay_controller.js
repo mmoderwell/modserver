@@ -4,13 +4,13 @@ module.exports = {
 	hello(req, res) {
 		res.send('Hello! Welcome to the relay controller');
 	},
-	//sends a HTTP request to hardware to see what relays are currently on
 	status(req, res) {
 
 		const options = {
+			//local address of relay controller
 			hostname: '10.0.0.208',
 			port: 80,
-			path: `/status`,
+			path: '/status',
 			method: 'GET',
 		};
 
@@ -26,7 +26,7 @@ module.exports = {
 			});
 			http_res.on('end', () => {
 				console.log('No more data in response.');
-				res.header("Access-Control-Allow-Origin", "*");
+				res.header('Access-Control-Allow-Origin', '*');
 				//let return_json = { "name": name, "action": action, "success": true };
 				//send client the response from hardware
 				res.send(JSON.stringify(body));
@@ -35,17 +35,16 @@ module.exports = {
 
 		http_req.on('error', (e) => {
 			console.error(`There was a problem with the request: ${e.message}`);
-			res.header("Access-Control-Allow-Origin", "*");
-			let return_json = { "success": false };
+			res.header('Access-Control-Allow-Origin', '*');
+			let return_json = { 'success': false, };
 
 			//send JSON to client
 			res.send(return_json);
 		});
 		http_req.end();
 	},
-	//send a request to hardware to toggle a specific relay on or off
 	toggle(req, res) {
-		const { name, action } = req.params;
+		const { name, action, } = req.params;
 
 		const options = {
 			hostname: '10.0.0.208',
@@ -59,13 +58,13 @@ module.exports = {
 			http_res.setEncoding('utf8');
 			http_res.on('data', (chunk) => {
 				let body = JSON.parse(chunk);
-				const status = ['off', 'on'];
+				const status = ['off', 'on', ];
 				console.log(`Relay ${name} is now ${status[body[name]]}.`);
 			});
 			http_res.on('end', () => {
 				console.log('No more data in response.');
-				res.header("Access-Control-Allow-Origin", "*");
-				let return_json = { "name": name, "action": action, "success": true };
+				res.header('Access-Control-Allow-Origin', '*');
+				let return_json = { 'name': name, 'action': action, 'success': true, };
 				//send JSON to client
 				res.send(JSON.stringify(return_json));
 			});
@@ -73,8 +72,8 @@ module.exports = {
 
 		http_req.on('error', (e) => {
 			console.error(`There was a problem with the request: ${e.message}`);
-			res.header("Access-Control-Allow-Origin", "*");
-			let return_json = { "name": name, "action": action, "success": false };
+			res.header('Access-Control-Allow-Origin', '*');
+			let return_json = { 'name': name, 'action': action, 'success': false, };
 			//send JSON to client
 			res.send(return_json);
 		});

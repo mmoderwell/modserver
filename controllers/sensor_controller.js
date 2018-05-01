@@ -37,11 +37,11 @@ module.exports = {
 		res.send('Hello! Welcome to the sensor controller');
 	},
 	lookup(req, res, next) {
-		res.header("Access-Control-Allow-Origin", "*");
+		res.header('Access-Control-Allow-Origin', '*');
 		//recieve request from client, lookup sensor values in time period from database,
 		//then send back to client
 		const time = req.body;
-		Sensor.find({ time: { '$gte': time.start, '$lt': time.end, }, })
+		Sensor.find({ time: { '$gte': time.start, '$lt': time.end, } })
 			.then((list) => {
 				var temps = [];
 				var times = [];

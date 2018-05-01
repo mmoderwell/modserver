@@ -1,9 +1,11 @@
 const relay_controller = require('../controllers/relay_controller.js');
 const sensor_controller = require('../controllers/sensor_controller.js');
+const status_controller = require('../controllers/status_controller.js');
 
 module.exports = (app) => {
 	//backend
 	app.get('/api/hello', relay_controller.hello);
+	app.get('/api/status', status_controller.status);
 	app.get('/api/relay/status', relay_controller.status);
 	app.get('/api/relay/:name/:action', relay_controller.toggle);
 	app.post('/api/sensor/lookup', sensor_controller.lookup);
