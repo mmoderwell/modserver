@@ -11,6 +11,9 @@
 	<link href="/img/favicon.png" rel="shortcut icon">
 	<!--Font-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/regular.css" integrity="sha384-ZlNfXjxAqKFWCwMwQFGhmMh3i89dWDnaFU2/VZg9CvsMGA7hXHQsPIqS+JIAmgEq" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
 	<!--Styles-->
 	<link rel="stylesheet" type="text/css" href="/css/milligram.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -18,12 +21,10 @@
 	<!--Scripts-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js" type="text/javascript"></script>
-
 </head>
 
 <body>
 	<div id="wrapper">
-
 		<!--Slide in Sidebar-->
 		<div id="sidebar-wrapper">
 			<nav class="sidebar-nav">
@@ -38,7 +39,6 @@
 			</nav>
 		</div>
 		<!--End of Sidebar-->
-
 		<!--Main Content Wrapper-->
 		<div id="page-wrapper">
 			<section class="container">
@@ -49,7 +49,6 @@
 						</div>
 					</div>
 				</div>
-
 				<!--Header-->
 				<div class="row">
 					<div class="column column-60">
@@ -62,22 +61,36 @@
 					</div>
 				</div>
 				<!--End of Header-->
-
 				<!--Main Content-->
 				<div class="row">
 					<div class="column">
 						<div class="box no_connection">
 							<div class="content">
-								<h6 class="loading" id="status">Connecting<span>.</span><span>.</span><span>.</span></h6>
+								<h6 class="loading" id="light_status">Connecting<span>.</span><span>.</span><span>.</span></h6>
+								<i class="far fa-lightbulb"></i>
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<div class="box no_connection">
+							<div class="content">
+								<h6 class="loading" id="light_status">Connecting<span>.</span><span>.</span><span>.</span></h6>
+								<i class="far fa-lightbulb"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column">
+						<div class="box no_connection">
+							<div class="content">
+								<h6 class="loading" id="relay_status">Connecting<span>.</span><span>.</span><span>.</span></h6>
 								<input type="checkbox" id="one" disabled/>
 								<label class="slider" for="one"></label>
-
 								<input type="checkbox" id="two" disabled />
 								<label class="slider" for="two"></label>
-
 								<input type="checkbox" id="three" disabled/>
 								<label class="slider" for="three"></label>
-
 								<input type="checkbox" id="four" disabled/>
 								<label class="slider" for="four"></label>
 							</div>
@@ -89,7 +102,7 @@
 					<div class="column">
 						<div class="box">
 							<div class="content">
-								<h6 class="loading" id="status">Fetching data<span>.</span><span>.</span><span>.</span></h6>
+								<h6 class="loading" id="temp_status">Fetching data<span>.</span><span>.</span><span>.</span></h6>
 								<canvas id="tempChart" width="100%" height="50px"></canvas>
 							</div>
 						</div>
@@ -100,10 +113,9 @@
 		</div>
 	</div>
 	<script src="/js/settings.js" type="text/javascript"></script>
-	<script src="/js/status.js" type="text/javascript"></script>
 	<script src="/js/slider.js" type="text/javascript"></script>
+	<script src="/js/status.js" type="text/javascript"></script>
 	<script src="/js/temperature.js" type="text/javascript"></script>
-	<script src="/js/app.js" type="text/javascript"></script>
 </body>
 
 </html>
