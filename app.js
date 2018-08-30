@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') {
 } else {
 	mongo_uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/modserver`;
 }
-//connect to database hosted on raspberry pi
+//connect to database
 mongoose.connect(mongo_uri).then(() => console.log('Connected to modserver database.'))
 	.catch((e) => {
 		console.error('Connection to mongodb failed.');
@@ -44,8 +44,16 @@ app.use((req, res, next) => {
 	next(err);
 });
 
-// error handler
-app.use((err, req, res) => {
+// error handlers
+app.get('*', function(req, res, next) {
+	//let err = new Error(`${req.ip} tried to reach ${req.originalUrl}`); // Tells us which IP tried to reach a particular URL
+	let err = new Error('Page not found.');
+	err.statusCode = 404;
+	err.shouldRedirect = true; //New property on err so that our middleware will redirect
+	next(err);
+});
+
+app.use((err, req, res, next) => {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'DEVELOPMENT' ? err : {};

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Modserver</title>
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#000">
+	<!--Fav-->
+	<link href="/img/favicon.png" rel="shortcut icon">
+	<!--Font-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css">
+	<!--Styles-->
+	<link rel="stylesheet" type="text/css" href="/css/milligram.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/page.css">
+	<!--Scripts-->
+
+</head>
+
+<body>
+	<div id="wrapper">
+
+		<!--Slide in Sidebar-->
+		<div id="sidebar-wrapper">
+			<nav class="sidebar-nav">
+				<li>
+					<h5>Settings</h5>
+				</li>
+				<li><a id="night_mode">Night Mode</a></li>
+				<br>
+				<li>
+					<h5>Status</h5>
+				</li>
+			</nav>
+		</div>
+		<!--End of Sidebar-->
+
+		<!--Main Content Wrapper-->
+		<div id="page-wrapper">
+			<section class="container">
+				<div class="row">
+					<div class="column">
+						<div id="sidebar-opener">
+							<a id="sidebar-button">Settings</a>
+						</div>
+					</div>
+				</div>
+
+				<!--Header-->
+				<div class="row">
+					<div class="column column-60">
+						<h3 id="heading">Modserver | Home Control</h3>
+					</div>
+					<div class="column" id="personal">
+						<p>Made by Matt Moderwell</p>
+						<a href="https://mmoderwell.com" title="mmoderwell.com">mmoderwell.com<br></a>
+						<a href="https://github.com/mmoderwell/modserver" title="github.com/mmoderwell/modserver">github.com/mmoderwell/modserver</a>
+					</div>
+				</div>
+				<!--End of Header-->
+
+				<!--Main Content-->
+				<div class="row">
+					<div class="column">
+						<div class="column">
+							<h1 style="text-align: center; margin-top: 20%;"><%= err.statusCode %> Error</h1>
+							<br>
+							<p>
+								Message:
+								<%= err.message %>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!--End of Main Content-->
+			</section>
+		</div>
+	</div>
+</body>
+
+</html>
