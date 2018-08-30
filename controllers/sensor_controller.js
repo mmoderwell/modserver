@@ -1,6 +1,10 @@
 const Sensor = require('../models/sensor');
 const http = require('http');
 
+require('../app.js'); // which executes 'mongoose.connect()'
+const mongoose = require('mongoose');
+
+//send a GET request to ESP8266 with temperature sensor to get reading
 function store(next) {
 	const options = {
 		hostname: '10.0.0.118',
@@ -30,7 +34,9 @@ function store(next) {
 	http_req.end();
 }
 //store the sensor value once every 30 minutes
-setInterval(store, 1800000);
+if (mongoose.connection.readyState === 1) {
+	setInterval(store, 1800000);
+}
 
 module.exports = {
 	hello(req, res) {

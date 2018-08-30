@@ -14,7 +14,7 @@ module.exports = {
 			method: 'GET',
 		};
 
-		//HTTP request to ESP32/8266 hardware
+		//HTTP request from Node server to ESP32/8266 hardware
 		const http_req = http.request(options, (http_res) => {
 			let body = '';
 			//console.log(`Status: ${http_res.statusCode}`);
@@ -34,7 +34,7 @@ module.exports = {
 		});
 
 		http_req.on('error', (e) => {
-			console.error(`There was a problem with the request: ${e.message}`);
+			console.error(`Relay controller status request error: ${e.message}`);
 			res.header('Access-Control-Allow-Origin', '*');
 			let return_json = { 'success': false, };
 
