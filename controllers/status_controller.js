@@ -2,11 +2,14 @@ const Sensor = require('../models/sensor');
 const http = require('http');
 const ping = require('ping');
 
+require('../app.js'); // which executes 'mongoose.connect()'
+const mongoose = require('mongoose');
+
 module.exports = {
 	hello(req, res) {
 		res.send('This controller will get the status of each part of Modserver.');
 	},
-	status(req, res) {
+	hardware(req, res) {
 		let results = [];
 		let hosts = [
 			{ 'name': 'relays', 'hostname': '10.0.0.208', 'alive': 'f', },
@@ -26,4 +29,8 @@ module.exports = {
 		});
 
 	},
+	database(req, res) {
+		// sends a 1 or a 0
+		res.send({ "connected": mongoose.connection.readyState });
+	}
 };
