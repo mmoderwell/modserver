@@ -22,13 +22,17 @@ function sensor_data() {
 	http_req.send(params);
 }
 
-sensor_data.call();
+if (database) {
+	sensor_data.call();
+} else {
+	let chart = make_chart('No data to display.', null);
+}
 
 function res_listen() {
 	//response recieved back from Node server
 	//already formatted for chart.js
 	let data = JSON.parse(this.responseText);
-	//console.log('Chart data:', data);
+	console.log('Chart data:', data);
 
 	let myChart = make_chart('House Temperatures', data);
 }
