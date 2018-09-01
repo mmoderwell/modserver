@@ -11,8 +11,9 @@ module.exports = (app) => {
 	app.get('/api/relay/:name/:action', relay_controller.toggle);
 	app.post('/api/sensor/lookup', sensor_controller.lookup);
 	app.get('/api/lights/status', light_controller.status);
-	app.get('/api/lights/off', light_controller.off);
-	app.get('/api/lights/on', light_controller.on);
+	app.get('/api/lights/:selector/off', light_controller.off);
+	app.get('/api/lights/:selector/on', light_controller.on);
+	app.get('/api/lights/:selector/color/:hue/:saturation/:birghtness', light_controller.color_change);
 	app.get('/api/lights/toggle', light_controller.toggle);
 	//frontend
 	app.get('/', (req, res) => {
