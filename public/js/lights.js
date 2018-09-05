@@ -2,7 +2,7 @@ let color_light = document.getElementById('color');
 let color_light_status = document.getElementById('color_light_status');
 let white_light = document.getElementById('white');
 let white_light_status = document.getElementById('white_light_status');
-
+//updates UI light color from slider value
 function setHSB() {
 	let hue = document.querySelector('.color .hue input').value;
 	let saturation = document.querySelector('.color .saturation input').value;
@@ -20,6 +20,7 @@ function setB() {
 	let brightness = document.querySelector('.white .brightness input').value;
 	let color = `hsl(60,60%,${brightness}%)`;
 	white_light.style.color = color;
+	//ensures the numbers always have 3 digits, for asthetic purposes
 	document.getElementById('w_bright').innerHTML = `b: ${(Math.round( (brightness/100) * 10 ) / 10).toFixed(1)}`;
 }
 setB();
