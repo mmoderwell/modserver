@@ -14,13 +14,13 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') {
 	mongo_uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/modserver`;
 }
 //connect to database
-mongoose.connect(mongo_uri).then(() => console.log('Connected to modserver database.'))
+mongoose.connect(mongo_uri).then(() => console.log('Connected to modserver database.'), { useNewUrlParser: true })
 	.catch((e) => {
 		console.error('Connection to mongodb failed.');
 	});
 
 //the database connection is disconnected
-mongoose.connection.on('disconnected', function() {
+mongoose.connection.on('disconnected', function () {
 	console.log('Connection to mongodb is disconnected.');
 });
 
@@ -28,7 +28,7 @@ mongoose.connection.on('disconnected', function() {
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 // error handlers
-app.get('*', function(req, res, next) {
+app.get('*', function (req, res, next) {
 	//let err = new Error(`${req.ip} tried to reach ${req.originalUrl}`); // Tells us which IP tried to reach a particular URL
 	let err = new Error('Page not found.');
 	err.statusCode = 404;
